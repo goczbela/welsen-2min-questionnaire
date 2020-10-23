@@ -79,7 +79,7 @@
 				<input id="clientip" name="clientip" type="text" value="<?php echo $_SERVER['REMOTE_ADDR']; ?>" />
 			
 			</div>
-		
+			
 		</form>
 
 		<script src="main.js"></script>
