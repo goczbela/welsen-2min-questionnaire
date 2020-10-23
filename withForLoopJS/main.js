@@ -57,16 +57,12 @@ var lenQual = qualitaArr.length;
 html#autistaBox.select + var i,q
 */
 
-var ab = document.getElementById("autistaBox");
+var ab = document.getElementById("autistiBox");
 
 
 var i = 0;
 var q = 0;
 
-
-/*
-html#qualitaSegni.constructor()
-*/
 
 
 /*
@@ -75,33 +71,77 @@ html#autistiBoxes.constructor()
 
 function abBuilder(){
 
-	ab.innerHTML += `<label for="${nomecognome(autistaArr[i])}_note"> ${autistaArr[i]} </label>`;
+		// selection of #autistiBox
+		let autistiBox = document.getElementById("autistiBox");
+
+		// create autistaBox
+		let autistaBox_DIV = document.createElement("DIV");
+		autistaBox_DIV.setAttribute("id", `autista_${nomecognome(autistaArr[i])}`);
+		autistaBox_DIV.setAttribute("class", "autistaBox");
+		autistiBox.appendChild(autistaBox_DIV);
+
+		// create autistaLabel
+		let autistaLabel = document.createElement("LABEL");
+		autistaLabel.setAttribute("class", "autistaLabel");
+		autistaLabel.setAttribute("for", `${nomecognome(autistaArr[i])}_note`);
+		autistaLabel.innerHTML = autistaArr[i];
+		autistaBox_DIV.appendChild(autistaLabel);
+
+		// create img for autista
+		let autista_IMG = document.createElement("IMG");
+		autista_IMG.setAttribute("src", `img/${nomecognome(autistaArr[i])}.jpg`);
+		autistaBox_DIV.appendChild(autista_IMG);
+
+		// create div.radioGridContainer for radiobuttons
+		let radioGridContainer = document.createElement("DIV");
+		radioGridContainer.setAttribute("class", "radioGridContainer");
+		autistaBox_DIV.appendChild(radioGridContainer);
 
 
-	for(q=0;q<lenQual;q++){
+				// create 5 radioButtons & signsOfSmiles with names for sending data
+				for(q=0;q<lenQual;q++){
 
-		ab.innerHTML += '<div class="radioGridContainer">';
-			ab.innerHTML += `<div>${qualitbArr[q]} ${(q+1)}</div>`;
-			ab.innerHTML += `<label for="${qualitaArr[q]}"></label>`;
-			ab.innerHTML += `<input type="radio" class="radioBtn" id="${nomecognome(autistaArr[i])}_${qualitaArr[q]}" name="${nomecognome(autistaArr[i])}_qualita" value="${qualitaArr[q]}" />`;
-		ab.innerHTML += '</div><br />';
-	};
+					let radioGridContents = document.createElement("DIV");
+					radioGridContainer.appendChild(radioGridContents);
 
-	ab.innerHTML += `<textarea id="${nomecognome(autistaArr[i])}_note" name="commenti" value="" rows="5" cols="20" placeholder="tuoi commenti sul nostro autista"></textarea><hr>`;
+						let qualitbDiv = document.createElement("DIV");
+						qualitbDiv.innerHTML = `${qualitbArr[q]}`;
+						radioGridContents.appendChild(qualitbDiv);
+
+						let qualitaRadio = document.createElement("INPUT");
+						qualitaRadio.setAttribute("type", "radio");
+						qualitaRadio.setAttribute("class", "radioBtn");
+						qualitaRadio.setAttribute("id", `${nomecognome(autistaArr[i])}_${qualitaArr[q]}`);
+						qualitaRadio.setAttribute("name", `${nomecognome(autistaArr[i])}_qualita`);
+						qualitaRadio.value = `${qualitaArr[q]}`;
+						radioGridContents.appendChild(qualitaRadio);
+
+						let numQualita = document.createElement("DIV");
+						numQualita.setAttribute("class", "numQualita");
+						numQualita.innerHTML = `${(q+1)}`;
+						radioGridContents.appendChild(numQualita);
+				
+				};
+
+		// create br
+		let br = document.createElement("BR");
+		autistaBox_DIV.appendChild(br);
+
+		// create textarea for autista
+		let autistaTextarea = document.createElement("TEXTAREA");
+		autistaTextarea.setAttribute("id", `${nomecognome(autistaArr[i])}_note`);
+		autistaTextarea.setAttribute("class", "note");
+		autistaTextarea.setAttribute("name", `${nomecognome(autistaArr[i])}_note`);
+		autistaTextarea.setAttribute("value", "");
+		autistaTextarea.setAttribute("rows", "5");
+		autistaTextarea.setAttribute("cols", "20");
+		autistaTextarea.setAttribute("placeholder", "tuoi commenti sul nostro autista");
+		autistaBox_DIV.appendChild(autistaTextarea);
 
 };
-
-
-/*
-endOf.abBiilder()
-*/
-
 
 
 
 for(i=0;i<lenAut;i++){
 	abBuilder();
 };
-
-
-
