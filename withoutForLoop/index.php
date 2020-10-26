@@ -10,6 +10,9 @@
 </head>
 
 <body>
+
+<form id="formQ" action="emailFormSender.php" method="POST" autocomplete="off" spellcheck="false">
+
 	<div id="welsenlogo">
 	<img src="./img/welsenlogo.jpg" alt="Welsen Viaggi" />
 	</div>
@@ -26,8 +29,6 @@
 	
 <!-- Inizial Form -->
 
-		<form id="formQ" action="emailFormSender.php" method="POST" autocomplete="off" spellcheck="false">
-	
 			<section class="intro">
 				
 				<h2>
